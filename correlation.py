@@ -10,4 +10,4 @@ for symbol in markets:
         all[symbol] = changes
 df = pd.DataFrame(all)
 corr = df.corr()
-print(corr[corr!=1].unstack().dropna().sort_values().tail(50)) #print 50 the most positive correlated coins
+print(corr.where(np.triu(np.ones(corr.shape), 1).astype(np.bool)).unstack().dropna().sort_values().tail(50)) #print 50 the most positive correlated coins
